@@ -49,25 +49,25 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){   //adds tail
         	
             Eat(false);
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){ //speed up
         	if(speed > 1) {
         		speed-=2;
         	}
             ;
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ADD)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ADD)){  //speed up
         	if(speed > 1) {
         		speed-=2;
         	}
             ;
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)){  //slow down
         	if(speed < 17) {
         		speed+=2;
         	}
             ;
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SUBTRACT)){
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SUBTRACT)){  //slow down
         	if(speed < 17) {
         		speed+=2;
         	}
