@@ -56,7 +56,22 @@ public class Player {
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
         	if (direction != "Left")
             	direction = "Right";
-        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){   //adds tail
+        }
+        //Different controller option
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)){
+            if (direction != "Down")
+            	direction = "Up";
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)){
+            if (direction != "Up")
+            	direction = "Down";
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_A)){
+            if (direction != "Right")
+            	direction = "Left";
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_D)){
+            if (direction != "Left")
+            	direction="Right";
+        }
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){   //adds tail
         	
             Eat(false);
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){ //speed up
