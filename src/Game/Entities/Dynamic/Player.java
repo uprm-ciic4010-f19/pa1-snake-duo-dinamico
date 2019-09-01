@@ -17,7 +17,8 @@ public class Player {
 
     public int xCoord;
     public int yCoord;
-
+    public int speed = 9;
+    
     public int moveCounter;
 
     public String direction;//is your first name one?
@@ -35,10 +36,11 @@ public class Player {
 
     public void tick(){
         moveCounter++;
-        if(moveCounter>=5) {
+        if(moveCounter>= speed) {
             checkCollisionAndMove();
             moveCounter=0;
         }
+        //game controls
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
             direction="Up";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
@@ -47,7 +49,31 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)){
+        	
+            Eat(false);
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)){
+        	if(speed > 1) {
+        		speed-=2;
+        	}
+            ;
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ADD)){
+        	if(speed > 1) {
+        		speed-=2;
+        	}
+            ;
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)){
+        	if(speed < 17) {
+        		speed+=2;
+        	}
+            ;
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SUBTRACT)){
+        	if(speed < 17) {
+        		speed+=2;
+        	}
+            ;
         }
+
 
     }
 
@@ -89,7 +115,7 @@ public class Player {
 
 
         if(handler.getWorld().appleLocation[xCoord][yCoord]){
-            Eat();
+            Eat(true);
         }
 
         if(!handler.getWorld().body.isEmpty()) {
@@ -119,11 +145,22 @@ public class Player {
 
     }
 
-    public void Eat(){
+    public void Eat(boolean eatsApple){
+    	//if true, add to tail and adds apple to map
+    	if(eatsApple) {
+    		handler.getWorld().appleLocation[xCoord][yCoord]= false;
+    		handler.getWorld().appleOnBoard = false;
+    		
+    		
+    		
+    	}
+    	
+    	
+    	//if false, does not add apple to map
+    	
         lenght++;
         Tail tail= null;
-        handler.getWorld().appleLocation[xCoord][yCoord]=false;
-        handler.getWorld().appleOnBoard=false;
+     
         switch (direction){
             case "Left":
                 if( handler.getWorld().body.isEmpty()){
