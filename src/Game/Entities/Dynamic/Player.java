@@ -57,7 +57,7 @@ public class Player {
         	if (direction != "Left")
             	direction = "Right";
         }
-        //Different controller option
+        //Different controller option 
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)){
             if (direction != "Down")
             	direction = "Up";
