@@ -76,7 +76,7 @@ public class Player {
         	}
             ;
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)){
-        	State.setState(GameSetUp.gameOverState);
+        	State.setState(GameSetUp.pauseState);
         	
         	
         }
@@ -88,6 +88,15 @@ public class Player {
         handler.getWorld().playerLocation[xCoord][yCoord]=false;
         int x = xCoord;
         int y = yCoord;
+        
+        //kills snake if it collides with itself
+        for(int i= 0; i< handler.getWorld().body.size(); i++) {
+        	if((handler.getWorld().body.get(i).x == xCoord) && (handler.getWorld().body.get(i).y == yCoord)) {
+        		kill();
+        	}        	
+        	
+        }
+        
         switch (direction){
             case "Left":
                 if(xCoord==0){
@@ -279,7 +288,8 @@ public class Player {
                 handler.getWorld().playerLocation[i][j]=false;
 
             }
-        }
+        }  State.setState(GameSetUp.gameOverState);
+
     }
 
     public boolean isJustAte() {
