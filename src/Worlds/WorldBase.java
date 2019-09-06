@@ -4,6 +4,7 @@ import Game.Entities.Dynamic.Player;
 import Game.Entities.Dynamic.Tail;
 import Game.Entities.Static.Apple;
 import Main.Handler;
+import Resources.Images;
 
 import java.awt.*;
 import java.util.LinkedList;
@@ -53,11 +54,24 @@ public abstract class WorldBase {
 
     public void render(Graphics g){
 
-        for (int i = 0; i <= 800; i = i + GridPixelsize) {
+    	int fontSize=16;
+    	g.setFont(new Font ("TimesRoman",Font.PLAIN,fontSize));
+    	
+    	
+        for (int i = 0; i <= 600; i = i + GridPixelsize) {
 
+        	
             g.setColor(Color.white);
             g.drawLine(0, i, handler.getWidth() , i);
-            g.drawLine(i,0,i,handler.getHeight());
+            g.drawLine(i,0,i,handler.getHeight() -200 );
+            
+            g.drawString("Score:"+Player.score, 17, 640);
+            g.setColor(Color.BLACK);
+            g.fillRoundRect(473, 624, 103, 21, 12, 21);
+            g.setColor(Color.GREEN);
+           
+            
+            
 
         }
 

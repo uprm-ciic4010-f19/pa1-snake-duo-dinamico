@@ -23,6 +23,8 @@ public class Player {
     public int speed = 9;
     
     public int moveCounter;
+    
+    public static int score= 0;
 
     public String direction;//is your first name one?
 
@@ -186,7 +188,7 @@ public class Player {
     		handler.getWorld().appleLocation[xCoord][yCoord]= false;
     		handler.getWorld().appleOnBoard = false;
     		
-    		
+    	    score += (int) Math.sqrt(2*(score +1));
     		
     	}
     	
@@ -308,6 +310,7 @@ public class Player {
 
             }
         }  State.setState(GameSetUp.gameOverState);
+        	score= 0;
 
     }
 
