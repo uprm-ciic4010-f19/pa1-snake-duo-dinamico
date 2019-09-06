@@ -1,5 +1,7 @@
 package Game.Entities.Static;
 
+import java.awt.Color;
+
 import Main.Handler;
 
 /**
@@ -9,6 +11,10 @@ public class Apple {
 
     private Handler handler;
 
+    private final int MAXSTEPS = 200;
+    private boolean rottened = false;
+    private Color color = Color.white;
+    
     public int xCoord;
     public int yCoord;
 
@@ -17,6 +23,20 @@ public class Apple {
         this.xCoord=x;
         this.yCoord=y;
     }
-
-
+  
+    public void rot(int steps) {
+    	if(steps % MAXSTEPS == 0 && steps != 0) {
+    		rotten();
+    	}
+    }
+    
+    public void rotten() {
+    	rottened = true;
+    	color = Color.yellow;
+    }
+    
+    public boolean good() {
+    	return !rottened;
+    }
+    
 }
