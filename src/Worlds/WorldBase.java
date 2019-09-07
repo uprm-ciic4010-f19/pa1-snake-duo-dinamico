@@ -22,7 +22,7 @@ public abstract class WorldBase {
 
     //automatically calculated, depends on previous input.
     //The size of each box, the size of each box will be GridPixelsize x GridPixelsize.
-    public int GridPixelsize;
+    public int GridPixelsize; ///changed
 
     public Player player;
 
