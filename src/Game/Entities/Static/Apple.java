@@ -12,7 +12,7 @@ public class Apple {
     private Handler handler;
 
     private final int MAXSTEPS = 200;
-    private boolean rottened = false;
+    private static boolean rottened = false;
     private Color color = Color.white;
     
     public int xCoord;
@@ -35,7 +35,7 @@ public class Apple {
     	color = Color.yellow;
     }
     
-    public boolean good() {
+    public static boolean good() {
     	return !rottened;
     }
     

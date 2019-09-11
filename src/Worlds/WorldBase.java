@@ -65,14 +65,27 @@ public abstract class WorldBase {
             g.drawLine(0, i, handler.getWidth() , i);
             g.drawLine(i,0,i,handler.getHeight() -200 );
             
-            g.drawString("Score:"+Player.score, 17, 640);
-            g.setColor(Color.BLACK);
-            g.fillRoundRect(473, 624, 103, 21, 12, 21);
             g.setColor(Color.GREEN);
+            g.drawString("Score:"+Player.score, 17, 640);
+         
            
+            g.setColor(Color.GREEN);
+            g.drawString("ESC: Pause Game", 17, 670);
             
+            g.setColor(Color.GREEN);
+            g.drawString("W,A,S,D: Move Cobra", 17, 700);
+           
+            g.setColor(Color.GREEN);
+            g.drawString("-, +: Speed", 17, 730);
+         
+            g.setColor(Color.GREEN);
+            g.drawString("N: Grow Snake", 17, 760);
+           
+            g.setColor(Color.GREEN);
+            g.drawString("H: Hell Difficulty!", 17, 790);
             
-
+            g.setColor(Color.GREEN);
+            g.drawString("G: Normal Difficulty", 200, 640);
         }
 
 
