@@ -60,8 +60,9 @@ public abstract class WorldBase {
     	
         for (int i = 0; i <= 600; i = i + GridPixelsize) {
 
-        	
-            g.setColor(Color.white);
+        	Color myPurple = new Color (102,0,153); // color purple
+            
+        	g.setColor(myPurple);
             g.drawLine(0, i, handler.getWidth() , i);
             g.drawLine(i,0,i,handler.getHeight() -200 );
             
