@@ -43,7 +43,7 @@ public class GameSetUp implements Runnable {
     private Handler handler;
 
     //States
-    public State gameState;
+    public static State gameState;
     public State menuState;
     public static State pauseState;
     public static State gameOverState;

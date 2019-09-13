@@ -66,9 +66,15 @@ public abstract class WorldBase {
             g.drawLine(0, i, handler.getWidth() , i);
             g.drawLine(i,0,i,handler.getHeight() -200 );
             
+            
+            g.setColor(Color.BLACK);
+            g.fillRoundRect(-5, 600, 800, 800, 12, 21);
+            
             g.setColor(Color.GREEN);
             g.drawString("Score:"+Player.score, 17, 640);
          
+            g.setColor(Color.GREEN);
+            g.drawString("High Score:"+Player.highScore, 383, 640);
            
             g.setColor(Color.GREEN);
             g.drawString("ESC: Pause Game", 17, 670);
@@ -87,6 +93,11 @@ public abstract class WorldBase {
             
             g.setColor(Color.GREEN);
             g.drawString("G: Normal Difficulty", 200, 640);
+            
+            g.setColor(Color.GREEN);
+            g.drawString("R: Restart Button", 200, 670);
+            
+            
         }
 
 

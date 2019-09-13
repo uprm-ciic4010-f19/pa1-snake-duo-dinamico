@@ -7,6 +7,8 @@ import UI.UIManager;
 
 import java.awt.*;
 
+import Game.Entities.Dynamic.Player;
+
 /**
  * Created by AlexVR on 7/1/2018.
  */
@@ -52,8 +54,17 @@ public class GameOverState extends State {
 
     @Override
     public void render(Graphics g) {
+    	int fontSize=40;
+    	g.setFont(new Font ("TimesRoman",Font.PLAIN,fontSize));
+    	
         g.drawImage(Images.gameOver,0,0,handler.getWidth(),handler.getHeight(),null);
         uiManager.Render(g);
+        
+       
+        g.setColor(Color.WHITE);
+        g.drawString("Your High Score is:"+Player.highScore, 140, (handler.getHeight()/5));
+        
+        
 
     }
 }

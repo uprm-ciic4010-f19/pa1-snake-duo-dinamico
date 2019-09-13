@@ -26,7 +26,8 @@ public class Player {
 	public int moveCounter;
 
 	public static int score= 0;
-
+    public static int highScore = 0;
+    
 	public String direction;//is your first name one?
 
 	public Player(Handler handler){
@@ -107,6 +108,10 @@ public class Player {
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_G)){       // Hell Difficultyspeed up
 			speed = 9;
 			
+		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)){       // Restart Button
+			handler.getGame().reStart();
+            State.setState(handler.getGame().gameState);
+
 		}
 
 
@@ -203,6 +208,10 @@ public class Player {
 			else 
 				score += (int) Math.sqrt(2*(score +1));
 
+			if(score > highScore) {
+			  highScore= score;
+			}
+			  
 		}
 
 
