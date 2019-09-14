@@ -1,7 +1,9 @@
 package Game.Entities.Static;
 
 import java.awt.Color;
+import java.util.Random;
 
+import Game.Entities.Dynamic.Player;
 import Main.Handler;
 
 /**
@@ -36,7 +38,24 @@ public class Apple {
     }
     
     public static boolean good() {
-    	return !rottened;
+//    	 Random gen = new Random();                                   
+//         int norm = 0;
+//         int randApple = gen.nextInt(17); 
+        	
+        	if(Player.isRottedApple()) {
+        		
+        		
+        		return false;
+        		
+        	} else 
+        		
+        		return true;
+        	
+        	
+    	
+    	
+    	
+    	//return !rottened;
     }
     
 }

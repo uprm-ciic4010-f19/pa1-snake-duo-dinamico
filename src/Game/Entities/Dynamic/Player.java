@@ -23,8 +23,14 @@ public class Player {
 	public int yCoord;
 	public int speed = 9;
 
-	public int moveCounter;
+	public static int moveCounter;   //static added
+    public static int otherCounter;
+	public boolean ate = false;
+	public static boolean rottedApple = false;
+    public static int steps = 0;
+	public static boolean colorActive = false;
 
+    
 	public static int score= 0;
     public static int highScore = 0;
     
@@ -41,12 +47,34 @@ public class Player {
 
 	}
 
+	public static boolean isRottedApple() {
+		return rottedApple;
+	}
+
+	public static void setRottedApple(boolean rottedApple) {
+		Player.rottedApple = rottedApple;
+	}
+
 	public void tick(){
 		moveCounter++;
+		otherCounter = moveCounter;
+		
+		if(steps > 60) {
+			rottedApple = true;
+			colorActive = true;
+		}
+		if(ate) {
+			steps = 0;
+			ate = false;
+			colorActive = false;
+
+		}
+		
 		if(moveCounter>= speed) {
 			checkCollisionAndMove();
 			moveCounter=0;
 		}
+		
 		//game controls
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
 			if (direction != "Down") 
@@ -115,7 +143,6 @@ public class Player {
 		}
 
 
-
 	}
 
 	public void checkCollisionAndMove(){
@@ -125,9 +152,17 @@ public class Player {
 
 		//kills snake if it collides with itself
 		for(int i= 0; i< handler.getWorld().body.size(); i++) {
+			
 			if((handler.getWorld().body.get(i).x == xCoord) && (handler.getWorld().body.get(i).y == yCoord)) {
 				kill();
-			}        	
+			}    
+			
+			if((handler.getWorld().body.get(i).x == xCoord) && (handler.getWorld().body.get(i).y == yCoord)) {
+				kill();
+			}    
+			
+			
+			
 
 		}
 
@@ -135,29 +170,43 @@ public class Player {
 		case "Left":
 			if(xCoord==0){
 				xCoord = handler.getWorld().GridWidthHeightPixelCount-1;  // 
+				steps++;
+
 			}else{
 				xCoord--;
+				steps++;
+
 			}
 			break;
 		case "Right":
 			if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
 				xCoord = 0;
+				steps++;
 			}else{
 				xCoord++;
+				steps++;
 			}
 			break;
 		case "Up":
 			if(yCoord==0){
 				yCoord =handler.getWorld().GridWidthHeightPixelCount-1;
+				steps++;
+
 			}else{
 				yCoord--;
+				steps++;
+
 			}
 			break;
 		case "Down":
 			if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
 				yCoord = 0;
+				steps++;
+
 			}else{
 				yCoord++;
+				steps++;
+
 			}
 			break;
 		}
@@ -180,8 +229,11 @@ public class Player {
 		Random r = new Random();
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-				g.setColor(Color.GREEN);
-
+				
+				if(colorActive == true) {
+				g.setColor(Color.YELLOW);
+				} else g.setColor(Color.GREEN);
+				
 				if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
 					g.fillRect((i*handler.getWorld().GridPixelsize),
 							(j*handler.getWorld().GridPixelsize),
@@ -200,18 +252,30 @@ public class Player {
 		if(eatsApple) {
 			handler.getWorld().appleLocation[xCoord][yCoord]= false;
 			handler.getWorld().appleOnBoard = false;
-
-			if(!Apple.good()) {
-				score -= (int) Math.sqrt(2*(score +1));
-				if(score < 0) score = 0;
-			}
-			else 
+            ate = true;
+            
+			if(Apple.good()== true) {
+				
+				
 				score += (int) Math.sqrt(2*(score +1));
 
-			if(score > highScore) {
-			  highScore= score;
+				if(score > highScore) {
+				  highScore= score;
+				}
 			}
-			  
+			else if(Apple.good() == false) {
+				score -= (int) Math.sqrt(2*(score +1));
+				rottedApple = false;
+			if(score < 0) {
+				score = 0;
+			}
+			
+		
+			
+			//handler.getWorld().body.removeLast();
+			lenght--;
+			}
+			
 		}
 
 

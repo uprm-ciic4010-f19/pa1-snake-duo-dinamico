@@ -35,6 +35,9 @@ public abstract class WorldBase {
 
 
     public Boolean[][] playerLocation;
+    
+    //public Boolean[][] previousLocation = playerLocation;        //
+
 
     public LinkedList<Tail> body = new LinkedList<>();
 
@@ -97,6 +100,17 @@ public abstract class WorldBase {
             g.setColor(Color.GREEN);
             g.drawString("R: Restart Button", 200, 670);
             
+            g.setColor(Color.GREEN);
+            g.drawString("60 > Steps = Bad Apple", 200, 700);
+            
+            g.setColor(Color.GREEN);
+            g.drawString("Steps"+ Player.steps, 383, 670);
+            
+            g.setColor(Color.GREEN);
+            g.drawString("Green Snake = Good Apple", 383, 700);
+            
+            g.setColor(Color.GREEN);
+            g.drawString("Yellow Snake = Bad Apple", 383, 730);
             
         }
 
