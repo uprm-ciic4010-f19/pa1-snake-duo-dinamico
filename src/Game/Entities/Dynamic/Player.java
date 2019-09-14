@@ -24,16 +24,15 @@ public class Player {
 	public int speed = 9;
 
 	public static int moveCounter;   //static added
-    public static int otherCounter;
 	public boolean ate = false;
 	public static boolean rottedApple = false;
-    public static int steps = 0;
+	public static int steps = 0;
 	public static boolean colorActive = false;
 
-    
+
 	public static int score= 0;
-    public static int highScore = 0;
-    
+	public static int highScore = 0;
+
 	public String direction;//is your first name one?
 
 	public Player(Handler handler){
@@ -57,8 +56,8 @@ public class Player {
 
 	public void tick(){
 		moveCounter++;
-		otherCounter = moveCounter;
-		
+
+
 		if(steps > 60) {
 			rottedApple = true;
 			colorActive = true;
@@ -69,12 +68,12 @@ public class Player {
 			colorActive = false;
 
 		}
-		
+
 		if(moveCounter>= speed) {
 			checkCollisionAndMove();
 			moveCounter=0;
 		}
-		
+
 		//game controls
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
 			if (direction != "Down") 
@@ -132,13 +131,13 @@ public class Player {
 
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_H)){       // Hell Difficultyspeed up
 			speed = 1;
-			
+
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_G)){       // Hell Difficultyspeed up
 			speed = 9;
-			
+
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_R)){       // Restart Button
 			handler.getGame().reStart();
-            State.setState(handler.getGame().gameState);
+			State.setState(handler.getGame().gameState);
 
 		}
 
@@ -152,17 +151,17 @@ public class Player {
 
 		//kills snake if it collides with itself
 		for(int i= 0; i< handler.getWorld().body.size(); i++) {
-			
+
 			if((handler.getWorld().body.get(i).x == xCoord) && (handler.getWorld().body.get(i).y == yCoord)) {
 				kill();
 			}    
-			
+
 			if((handler.getWorld().body.get(i).x == xCoord) && (handler.getWorld().body.get(i).y == yCoord)) {
 				kill();
 			}    
-			
-			
-			
+
+
+
 
 		}
 
@@ -229,11 +228,11 @@ public class Player {
 		Random r = new Random();
 		for (int i = 0; i < handler.getWorld().GridWidthHeightPixelCount; i++) {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
-				
+
 				if(colorActive == true) {
-				g.setColor(Color.YELLOW);
+					g.setColor(Color.YELLOW);
 				} else g.setColor(Color.GREEN);
-				
+
 				if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
 					g.fillRect((i*handler.getWorld().GridPixelsize),
 							(j*handler.getWorld().GridPixelsize),
@@ -252,30 +251,30 @@ public class Player {
 		if(eatsApple) {
 			handler.getWorld().appleLocation[xCoord][yCoord]= false;
 			handler.getWorld().appleOnBoard = false;
-            ate = true;
-            
+			ate = true;
+
 			if(Apple.good()== true) {
-				
-				
+
+
 				score += (int) Math.sqrt(2*(score +1));
 
 				if(score > highScore) {
-				  highScore= score;
+					highScore= score;
 				}
 			}
 			else if(Apple.good() == false) {
 				score -= (int) Math.sqrt(2*(score +1));
 				rottedApple = false;
-			if(score < 0) {
-				score = 0;
+				if(score < 0) {
+					score = 0;
+				}
+
+
+
+				//handler.getWorld().body.removeLast();
+				lenght--;
 			}
-			
-		
-			
-			//handler.getWorld().body.removeLast();
-			lenght--;
-			}
-			
+
 		}
 
 
